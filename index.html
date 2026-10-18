@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090711">
+<title>MADARA SONG — Studio IA</title>
+<style>
+:root {
+  --bg: #090711;
+  --card: #151122;
+  --purple: #9b5cff;
+  --blue: #377dff;
+  --text: #f8f6ff;
+  --muted: #aaa3bd;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+header {
+  padding: 22px 16px;
+  border-bottom: 1px solid #29213e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo { font-size: 21px; font-weight: 900; }
+.logo span { color: var(--purple); }
+.tag { color: var(--muted); font-size: 12px; }
+main { max-width: 850px; margin: auto; padding: 20px 15px 45px; }
+.hero {
+  text-align: center;
+  padding: 32px 12px;
+  background: radial-gradient(ellipse at top, #34204f, transparent 70%);
+  border-radius: 20px;
+}
+.emblem {
+  margin: auto auto 18px;
+  width: 92px; height: 92px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(140deg, #27134a, #101c45);
+  border: 2px solid var(--purple);
+  box-shadow: 0 0 30px #8d45ff55;
+  font-size: 44px;
+}
+h1 { margin: 10px 0; font-size: 30px; }
+h1 span { color: var(--purple); }
+p { color: var(--muted); line-height: 1.6; }
+.panel {
+  background: var(--card);
+  padding: 19px;
+  border: 1px solid #302442;
+  border-radius: 17px;
+  margin-bottom: 17px;
+}
+label { display: block; margin: 14px 0 9px; font-weight: bold; }
+textarea, input, select {
+  width: 100%;
+  padding: 14px;
+  background: #0d0a16;
+  border: 1px solid #39304d;
+  border-radius: 10px;
+  color: white;
+  font: inherit;
+}
+textarea { min-height: 110px; resize: vertical; }
+button {
+  border: 0;
+  padding: 14px;
+  border-radius: 11px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+.primary {
+  width: 100%;
+  margin-top: 15px;
+  color: white;
+  background: linear-gradient(100deg, #883eff, #315fff);
+}
+.secondary { background: #29203c; color: white; }
+button:active { transform: scale(.98); }
+.row { display: flex; gap: 10px; }
+.row > * { flex: 1; min-width: 0; }
+#status { font-size: 13px; margin-top: 12px; }
+#player { width: 100%; margin-top: 14px; }
+.badge {
+  display: inline-block;
+  background: #291c40;
+  color: #c9a5ff;
+  border-radius: 30px;
+  padding: 7px 11px;
+  font-size: 12px;
+  margin: 4px;
+}
+footer { text-align: center; padding: 25px; color: #716981; font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">MADARA <span>SONG</span></div>
+  <div class="tag">STUDIO IA 🎧</div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="emblem">🎵</div>
+    <h1>CREATE YOUR <span>SOUND</span></h1>
+    <p>Ton imagination. Ta musique.<br>
+    Donne vie à tes idées musicales.</p>
+    <span class="badge">RAP</span>
+    <span class="badge">DRILL</span>
+    <span class="badge">AFROBEAT</span>
+    <span class="badge">R&B</span>
+  </section>
+
+  <section class="panel">
+    <h2>🎤 Créer une chanson</h2>
+    <label for="description">Décris ta musique</label>
+    <textarea id="description"
+      placeholder="Ex : Un rap sombre sur la puissance de Madara, voix grave, piano et percussions épiques..."></textarea>
+
+    <div class="row">
+      <div>
+        <label for="style">Style musical</label>
+        <select id="style">
+          <option>Rap</option>
+          <option>Drill</option>
+          <option>Afrobeat</option>
+          <option>Amapiano</option>
+          <option>R&B</option>
+          <option>Gospel</option>
+          <option>Cinématique</option>
+          <option>Lo-fi</option>
+        </select>
+      </div>
+      <div>
+        <label for="voice">Voix souhaitée</label>
+        <select id="voice">
+          <option>Voix masculine</option>
+          <option>Voix féminine</option>
+          <option>Instrumental uniquement</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="lyrics">Paroles (facultatif)</label>
+    <textarea id="lyrics" placeholder="Écris tes propres paroles ici..."></textarea>
+
+    <button class="primary" id="generate">✨ Préparer ma chanson</button>
+    <div id="status" role="status">Prêt à créer.</div>
+  </section>
+
+  <section class="panel">
+    <h2>✍️ Atelier de paroles</h2>
+    <p>Prépare une structure de chanson à partir de ton thème.</p>
+    <input id="theme" placeholder="Ex : ambition, victoire, Madara...">
+    <button class="primary" id="write">Générer une structure de paroles</button>
+    <textarea id="result" style="margin-top:14px"
+      placeholder="Tes paroles apparaîtront ici..." readonly></textarea>
+    <button class="secondary" id="copy">Copier les paroles</button>
+  </section>
+
+  <section class="panel">
+    <h2>🎧 Lecteur musical</h2>
+    <p>Écoute ici un fichier audio que tu possèdes.</p>
+    <input id="audioFile" type="file" accept="audio/*">
+    <audio id="player" controls hidden></audio>
+    <p id="audioStatus"></p>
+  </section>
+</main>
+
+<footer>
+  MADARA SONG © 2026<br>
+  Studio musical nouvelle génération
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+
+$("generate").addEventListener("click", () => {
+  const description = $("description").value.trim();
+  if (!description) {
+    $("status").textContent = "Écris d'abord une description musicale.";
+    return;
+  }
+
+  const style = $("style").value;
+  const voice = $("voice").value;
+  const lyrics = $("lyrics").value.trim();
+
+  $("status").textContent =
+    "Description préparée ! Style : " + style +
+    " | " + voice +
+    ". Le moteur musical IA doit encore être connecté pour générer l'audio.";
+
+  $("result").value =
+    "TITRE À CHOISIR\n\n" +
+    "STYLE : " + style + "\n" +
+    "VOIX : " + voice + "\n\n" +
+    "DESCRIPTION :\n" + description +
+    (lyrics ? "\n\nPAROLES :\n" + lyrics : "");
+});
+
+$("write").addEventListener("click", () => {
+  const theme = $("theme").value.trim();
+  if (!theme) {
+    $("result").value = "Entre un thème pour commencer.";
+    return;
+  }
+
+  $("result").value =
+`TITRE : ${theme.toUpperCase()}
+
+[INTRO]
+Une nouvelle histoire commence,
+Je transforme mes rêves en puissance.
+
+[COUPLET 1]
+J'avance sans perdre ma direction,
+Chaque épreuve nourrit mon ambition.
+Je garde mes objectifs en mémoire,
+Je construis demain, j'écris mon histoire.
+
+[REFRAIN]
+${theme}, gravé dans ma mémoire,
+Je poursuis mes rêves et ma victoire.
+Même quand le chemin devient incertain,
+Je garde le cap et je trace mon destin.
+
+[COUPLET 2]
+Chaque idée devient une création,
+Chaque effort construit ma vision.
+Je fais de mes rêves une réalité,
+Avec du courage et de la volonté.
+
+[OUTRO]
+Mon histoire continue...
+La suite reste à écrire.`;
+});
+
+$("copy").addEventListener("click", async () => {
+  const text = $("result").value;
+  if (!text) {
+    $("status").textContent = "Aucun texte à copier.";
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(text);
+    $("status").textContent = "Paroles copiées !";
+  } catch {
+    $("result").focus();
+    $("result").select();
+    $("status").textContent =
+      "Sélectionne le texte puis choisis Copier.";
+  }
+});
+
+let audioUrl = null;
+$("audioFile").addEventListener("change", event => {
+  const file = event.target.files[0];
+  if (!file) return;
+  if (audioUrl) URL.revokeObjectURL(audioUrl);
+  audioUrl = URL.createObjectURL(file);
+  $("player").src = audioUrl;
+  $("player").hidden = false;
+  $("audioStatus").textContent = "Fichier chargé : " + file.name;
+});
+</script>
+</body>
+</html>
